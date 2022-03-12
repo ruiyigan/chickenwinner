@@ -4,7 +4,7 @@ import StyledFirebaseAuth from 'react-firebaseui/StyledFirebaseAuth';
 import { firebase, db } from './services/firebase-config.js'
 import 'firebase/compat/auth';
 
-import { collection, addDoc, getDocs, query, where } from "firebase/firestore";
+import { collection, addDoc, doc, getDocs, query, where, setDoc, getDoc } from "firebase/firestore";
 import SocialEnterprise from './SocialEnterprise.js';
 import Individual from './Individual.js';
 
@@ -46,22 +46,22 @@ function Login() {
         );
     }
 
-    const usersRef = collection(db, 'users')
-    const q = query(usersRef, where('email', '==', firebase.auth().currentUser.email))
-    console.log("current user", firebase.auth().currentUser)
-    const querySnapshot = getDocs(q)
+    const usersRef = doc(db, 'users', firebase.auth().currentUser.uid)
+    getDoc(usersRef)
+        .then(snapshot => {
+            if (snapshot.exists()) {
+                setType(snapshot.data().type)
+            } else {
+                console.log("does not exist", snapshot)
+            }
+        })
+
     const signOut = () => {
         setType(null)
+        setIsSignedIn(false)
         firebase.auth().signOut()
     }
-    querySnapshot.then(snapshot => {
-        if (snapshot.docs.length >= 1) {
-            setType(snapshot.docs[0].data().type)
-        } else {
-            console.log("outside", snapshot.docs)
-        }
-    })
-    console.log("type", type)
+    
     if (type != null) {
         if (type == 'Social Enterprise') {
             return (
@@ -74,14 +74,15 @@ function Login() {
             )
         }
     }
+    console.log(firebase.auth().currentUser.uid)
     async function submitHandler(type) {
         try {
-            const docRef = await addDoc(collection(db, "users"), {
+            await setDoc(doc(db, "users", firebase.auth().currentUser.uid), {
                 name: firebase.auth().currentUser.displayName,
                 email: firebase.auth().currentUser.email,
                 type: type
             });
-            console.log("Document written with ID: ", docRef.id);
+            console.log("Document written with ID: ", firebase.auth().currentUser.uid);
         } catch (e) {
             console.error("Error adding document: ", e);
         }
