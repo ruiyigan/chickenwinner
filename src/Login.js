@@ -5,6 +5,8 @@ import { firebase, db } from './services/firebase-config.js'
 import 'firebase/compat/auth';
 
 import { collection, addDoc, getDocs, query, where } from "firebase/firestore";
+import SocialEnterprise from './SocialEnterprise.js';
+import Individual from './Individual.js';
 
 const uiConfig = {
     signInFlow: 'popup',
@@ -63,20 +65,12 @@ function Login() {
     if (type != null) {
         if (type == 'Social Enterprise') {
             return (
-                <div>
-                    <h1>Social Enterprise</h1>
-                    <p>Welcome {firebase.auth().currentUser.displayName}! You are now signed-in!</p>
-                    <a onClick={() => signOut()}>Sign-out</a>
-                </div>
+                <SocialEnterprise signOut={signOut} />
             )
         }
         if (type == 'Individual') {
             return (
-                <div>
-                    <h1>Individual</h1>
-                    <p>Welcome {firebase.auth().currentUser.displayName}! You are now signed-in!</p>
-                    <a onClick={() => firebase.auth().signOut()}>Sign-out</a>
-                </div>
+                <Individual signOut={signOut} />
             )
         }
     }
