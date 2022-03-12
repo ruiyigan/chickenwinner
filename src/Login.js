@@ -8,6 +8,9 @@ import { doc, setDoc, getDoc } from "firebase/firestore";
 import SocialEnterprise from './SocialEnterprise.js';
 import Individual from './Individual.js';
 
+import individualService from './services/individuals.js';
+import enterpriseService from './services/enterprises.js';
+
 const uiConfig = {
     signInFlow: 'popup',
     signInOptions: [
@@ -50,18 +53,21 @@ function Login() {
         firebase.auth().signOut()
     }
 
-    const individualRef = doc(db, "individuals", firebase.auth().currentUser.uid)
-    getDoc(individualRef).then(snapshot => {
-        if (snapshot.exists()) {
-            setType("Individual")
-        }
-    })
-    const enterpriseRef = doc(db, "enterprises", firebase.auth().currentUser.uid)
-    getDoc(enterpriseRef).then(snapshot => {
-        if (snapshot.exists()) {
-            setType("Social Enterprise")
-        }
-    })
+    const individualSnapshot = individualService.getIndividualSnapshot(firebase.auth().currentUser.uid)
+    individualSnapshot
+        .then(snapshot => {
+            if (snapshot.exists()) {
+                setType('Individual')
+            }
+        })
+
+    const enterpriseSnapshot = enterpriseService.getEnterpriseSnapshot(firebase.auth().currentUser.uid)
+    enterpriseSnapshot
+        .then(snapshot => {
+            if (snapshot.exists()) {
+                setType("Social Enterprise")
+            }
+        })
 
     if (type === 'Social Enterprise') {
         return (
@@ -77,20 +83,10 @@ function Login() {
     async function submitHandler(type) {
         setType(type)
         if (type === 'Social Enterprise') {
-            console.log('Social Enterprise')
-            await setDoc(doc(db, "enterprises", firebase.auth().currentUser.uid), {
-                name: firebase.auth().currentUser.displayName,
-                email: firebase.auth().currentUser.email,
-            });
-            console.log("Created social entperise with ID: ", firebase.auth().currentUser.uid);
+            await enterpriseService.addEnterprise(firebase.auth().currentUser.uid, firebase.auth().currentUser.displayName, firebase.auth().currentUser.email)  
         }
         if (type === 'Individual') {
-            console.log('Individual')
-            await setDoc(doc(db, "individuals", firebase.auth().currentUser.uid), {
-                name: firebase.auth().currentUser.displayName,
-                email: firebase.auth().currentUser.email,
-            });
-            console.log("Created individual with ID: ", firebase.auth().currentUser.uid);
+             await individualService.addIndividual(firebase.auth().currentUser.uid, firebase.auth().currentUser.displayName, firebase.auth().currentUser.email)
         }
     }
 

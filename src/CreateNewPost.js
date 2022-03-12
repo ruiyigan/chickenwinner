@@ -1,7 +1,8 @@
 import React from 'react'
 import { useState } from 'react'
 import { firebase, db } from './services/firebase-config.js'
-import { collection, addDoc, doc } from "firebase/firestore"
+import { doc } from "firebase/firestore"
+import postService from './services/posts.js'
 
 const CreateNewPost = ({ posts, setPosts }) => {
     const [newTitle, setNewTitle] = useState('')
@@ -11,11 +12,9 @@ const CreateNewPost = ({ posts, setPosts }) => {
         const PostObject = {
             title: newTitle,
             content: newContent,
-            userRef: doc(db, 'users', firebase.auth().currentUser.uid)
+            enterpriseRef: doc(db, 'enterprises', firebase.auth().currentUser.uid)
         }
-        const docRef = await addDoc(collection(db, 'posts'), PostObject)
-        console.log("Document written with ID: ", docRef.id)
-        console.log(newTitle, newContent)
+        await postService.addPostbyEnterpriseId(PostObject)
         setNewTitle('')
         setNewContent('')
         setPosts([...posts, PostObject])

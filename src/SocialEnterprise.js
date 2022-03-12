@@ -4,25 +4,22 @@ import { firebase, db } from './services/firebase-config.js'
 import CreateNewPost from './CreateNewPost.js'
 import { collection, doc, getDoc, getDocs, query, where } from 'firebase/firestore'
 import Posts from './Posts.js'
+import enterpriseService from './services/enterprises.js'
+import postService from './services/posts.js'
 
 const SocialEnterprise = ({ type, signOut, id }) => {
     const [posts, setPosts] = useState([])
     const [enterpriseData, setEnterpriseData] = useState({})
     useEffect(() => {
-        const postRef = collection(db, 'posts')
-        const q = query(postRef, where('userRef', '==', doc(db, 'users', id)))
-        getDocs(q)
+        postService.getPostsByEnterpriseId(id)
             .then(snapshot => {
                 setPosts(snapshot.docs.map(doc => doc.data()))
             })
-        const enterpriseRef = doc(db, 'enterprises', id)
-        getDoc(enterpriseRef)
+        enterpriseService.getEnterpriseSnapshot(id)
             .then(snapshot => {
                 setEnterpriseData(snapshot.data())
-                console.log("socialenterprise data", snapshot.data())
             })
     }, [])
-    console.log("hello")
     return (
         <div>
             <h2>Social Enterprise {enterpriseData.name}</h2>

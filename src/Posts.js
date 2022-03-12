@@ -4,7 +4,7 @@ const Posts = ({ posts }) => {
     return (
         <>
             <h2>Posts</h2>
-            {posts.map(post => <p> {post.title} {post.content} </p>)}
+            {posts.map(post => <p key={post.title}> {post.title} {post.content} </p>)}
         </>
     )
 }
