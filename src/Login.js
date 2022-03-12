@@ -4,7 +4,7 @@ import StyledFirebaseAuth from 'react-firebaseui/StyledFirebaseAuth';
 import { firebase, db } from './services/firebase-config.js'
 import 'firebase/compat/auth';
 
-import { collection, addDoc, doc, getDocs, query, where, setDoc, getDoc } from "firebase/firestore";
+import { doc, setDoc, getDoc } from "firebase/firestore";
 import SocialEnterprise from './SocialEnterprise.js';
 import Individual from './Individual.js';
 
@@ -14,8 +14,6 @@ const uiConfig = {
         {
             provider: firebase.auth.GoogleAuthProvider.PROVIDER_ID,
             customParameters: {
-                // Forces account selection even when one account
-                // is available.
                 prompt: 'select_account'
             },
         },
@@ -46,47 +44,56 @@ function Login() {
         );
     }
 
-    const usersRef = doc(db, 'users', firebase.auth().currentUser.uid)
-    getDoc(usersRef)
-        .then(snapshot => {
-            if (snapshot.exists()) {
-                setType(snapshot.data().type)
-            } else {
-                console.log("does not exist", snapshot)
-            }
-        })
-
     const signOut = () => {
         setType(null)
         setIsSignedIn(false)
         firebase.auth().signOut()
     }
-    
-    if (type != null) {
-        if (type == 'Social Enterprise') {
-            return (
-                <SocialEnterprise signOut={signOut} />
-            )
+
+    const individualRef = doc(db, "individuals", firebase.auth().currentUser.uid)
+    getDoc(individualRef).then(snapshot => {
+        if (snapshot.exists()) {
+            setType("Individual")
         }
-        if (type == 'Individual') {
-            return (
-                <Individual signOut={signOut} />
-            )
+    })
+    const enterpriseRef = doc(db, "enterprises", firebase.auth().currentUser.uid)
+    getDoc(enterpriseRef).then(snapshot => {
+        if (snapshot.exists()) {
+            setType("Social Enterprise")
         }
+    })
+
+    if (type === 'Social Enterprise') {
+        return (
+            <SocialEnterprise signOut={signOut} id={firebase.auth().currentUser.uid} />
+        )
     }
-    console.log(firebase.auth().currentUser.uid)
+    if (type === 'Individual') {
+        return (
+            <Individual signOut={signOut} />
+        )
+    }
+
     async function submitHandler(type) {
-        try {
-            await setDoc(doc(db, "users", firebase.auth().currentUser.uid), {
+        setType(type)
+        if (type === 'Social Enterprise') {
+            console.log('Social Enterprise')
+            await setDoc(doc(db, "enterprises", firebase.auth().currentUser.uid), {
                 name: firebase.auth().currentUser.displayName,
                 email: firebase.auth().currentUser.email,
-                type: type
             });
-            console.log("Document written with ID: ", firebase.auth().currentUser.uid);
-        } catch (e) {
-            console.error("Error adding document: ", e);
+            console.log("Created social entperise with ID: ", firebase.auth().currentUser.uid);
+        }
+        if (type === 'Individual') {
+            console.log('Individual')
+            await setDoc(doc(db, "individuals", firebase.auth().currentUser.uid), {
+                name: firebase.auth().currentUser.displayName,
+                email: firebase.auth().currentUser.email,
+            });
+            console.log("Created individual with ID: ", firebase.auth().currentUser.uid);
         }
     }
+
     return (
         <>
             <button onClick={() => submitHandler("Individual")}>
