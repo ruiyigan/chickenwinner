@@ -1,4 +1,4 @@
-import { doc, setDoc } from 'firebase/firestore'
+import { deleteDoc, doc, setDoc } from 'firebase/firestore'
 import React from 'react'
 import { useState } from 'react'
 import { db } from './services/firebase-config'
@@ -48,12 +48,18 @@ const Post = ({id, title, content, setPosts, posts, type}) => {
             </div>
         )
     }
+    
+    const deletePost = async () => {
+        await deleteDoc(doc(db, 'posts', id))
+        setPosts(posts.filter(post => post.id !== id))
+    }
 
     return (
         <>
             <h3>{title}</h3>
             <p>{content}</p>
             {type === 'Social Enterprise' && <button onClick={() => setIsEditing(true)}>Edit</button>}
+            {type === 'Social Enterprise' && <button onClick={() => deletePost()}>Delete</button>}
         </>
     )
 }
