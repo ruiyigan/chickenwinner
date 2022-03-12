@@ -1,8 +1,6 @@
 import React from 'react'
 import { useState, useEffect } from 'react'
-import { firebase, db } from './services/firebase-config.js'
 import CreateNewPost from './CreateNewPost.js'
-import { collection, doc, getDoc, getDocs, query, where } from 'firebase/firestore'
 import Posts from './Posts.js'
 import enterpriseService from './services/enterprises.js'
 import postService from './services/posts.js'
@@ -24,7 +22,7 @@ const SocialEnterprise = ({ type, signOut, id }) => {
         <div>
             <h2>Social Enterprise {enterpriseData.name}</h2>
             {type === 'Social Enterprise' && <CreateNewPost setPosts={setPosts} posts={posts} />}
-            <Posts posts={posts} />
+            <Posts posts={posts} setPosts={setPosts} type={type}/>
             {type === 'Social Enterprise' && <button onClick={() => signOut()}>Sign-out</button>}
         </div>
     )

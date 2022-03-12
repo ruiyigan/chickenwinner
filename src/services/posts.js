@@ -1,4 +1,4 @@
-import { doc, getDocs, collection, query, where, addDoc } from "firebase/firestore";
+import { doc, getDocs, collection, query, where, addDoc, setDoc } from "firebase/firestore";
 import { db } from "./firebase-config";
 
 const getPostsByEnterpriseId = (uid) => {
@@ -8,7 +8,7 @@ const getPostsByEnterpriseId = (uid) => {
 }
 
 const addPostbyEnterpriseId = (PostObject) => {
-    return addDoc(collection(db, 'posts'), PostObject)
+    return setDoc(doc(db, 'posts', PostObject.id), PostObject)
 }
 
 export default { getPostsByEnterpriseId, addPostbyEnterpriseId }

@@ -1,10 +1,11 @@
 import React from 'react'
+import Post from './Post.js'
 
-const Posts = ({ posts }) => {
+const Posts = ({ posts, setPosts, type }) => {
     return (
         <>
             <h2>Posts</h2>
-            {posts.map(post => <p key={post.title}> {post.title} {post.content} </p>)}
+            {posts.map(post => <Post type={type} key={post.id} id={post.id} title={post.title} content={post.content} setPosts={setPosts} posts={posts}/>)}
         </>
     )
 }

@@ -1,16 +1,13 @@
-import { getDoc, doc } from 'firebase/firestore'
-import { firebase, db } from './services/firebase-config.js'
 import React from 'react'
 import { useState, useEffect } from 'react'
 import SocialEnterprise from './SocialEnterprise.js'
+import enterpriseService from './services/enterprises.js'
 
-
-const EnterpriseCard = ({type, signOut, id}) => {
+const EnterpriseCard = ({ type, signOut, id }) => {
     const [enterpriseName, setEnterpriseName] = useState('')
     const [isClicked, setIsClicked] = useState(false)
     useEffect(() => {
-        const enterpriseRef = doc(db, 'enterprises', id)
-        getDoc(enterpriseRef)
+        enterpriseService.getEnterpriseSnapshot(id)
             .then(snapshot => {
                 setEnterpriseName(snapshot.data().name)
             }
@@ -19,7 +16,7 @@ const EnterpriseCard = ({type, signOut, id}) => {
 
     if (isClicked) {
         return (
-            <SocialEnterprise type={type} signOut={signOut} id={id}/>
+            <SocialEnterprise type={type} signOut={signOut} id={id} />
         )
     }
     return (
