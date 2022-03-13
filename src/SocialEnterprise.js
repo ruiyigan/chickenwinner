@@ -20,7 +20,7 @@ const SocialEnterprise = ({ type, signOut, id }) => {
     }, [])
     return (
         <div>
-            <h2>Social Enterprise {enterpriseData.name}</h2>
+            <h1 class="text-center text-2xl text-gray-800 font-bold uppercase leading-10">{enterpriseData.name}</h1>
             {type === 'Social Enterprise' && <CreateNewPost setPosts={setPosts} posts={posts} />}
             <Posts posts={posts} setPosts={setPosts} type={type}/>
             {type === 'Social Enterprise' && <button onClick={() => signOut()}>Sign-out</button>}
