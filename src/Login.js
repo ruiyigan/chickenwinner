@@ -72,7 +72,10 @@ function Login() {
 
     if (type === 'Social Enterprise') {
         return (
-            <SocialEnterprise type={type} signOut={signOut} id={firebase.auth().currentUser.uid} />
+            <>
+                <h1 class='text-center'>Welcome</h1>
+                <SocialEnterprise type={type} signOut={signOut} id={firebase.auth().currentUser.uid} />
+            </>
         )
     }
     if (type === 'Individual') {
