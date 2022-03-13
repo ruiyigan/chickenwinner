@@ -33,6 +33,7 @@ const Post = ({post, setPosts, posts, type}) => {
                 postType: post.postType,
                 title: editTitle,
                 content: editContent,
+                participantIds: post.participantIds
             }
         }
         await setDoc(doc(db, 'posts', post.id), PostObject, { merge: true })

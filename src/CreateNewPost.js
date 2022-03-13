@@ -38,6 +38,7 @@ const CreateNewPost = ({ posts, setPosts, setCreatePost }) => {
                 title: newTitle,
                 content: newContent,
                 postType: postType,
+                participantIds: [],
                 enterpriseRef: doc(db, 'enterprises', firebase.auth().currentUser.uid)
             }
         }
