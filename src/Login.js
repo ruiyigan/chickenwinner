@@ -94,14 +94,14 @@ function Login() {
     }
 
     return (
-        <>
-            <button onClick={() => submitHandler("Individual")}>
+        <div class='flex flex-col pt-36 items-center'>
+            <button class="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded my-3 " onClick={() => submitHandler("Individual")}>
                 Individual
             </button>
-            <button onClick={() => submitHandler("Social Enterprise")}>
+            <button class="bg-orange-500 hover:bg-orange-700 text-white font-bold py-2 px-4 rounded my-3 " onClick={() => submitHandler("Social Enterprise")}>
                 Social Enterprise
             </button>
-        </>
+        </div>
     )
 }
 
