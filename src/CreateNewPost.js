@@ -102,19 +102,18 @@ const CreateNewPost = ({ posts, setPosts }) => {
 
     return (
         <>
-            <h3 class="text-center text-base text-gray-500 font-bold leading-10">New Post</h3>
-            <div>
+            <div class="text-center">
                 <input onChange={onChangeValue} type="radio" value="Post" name="post" /> 
-                <label class="text-blue-500 font-bold leading-10">
+                <label class="text-blue-500 font-bold leading-10 pr-2 pl-1">
                     Post
                 </label>
                 <input onChange={onChangeValue} type="radio" value="Activity" name="post" />
-                <label class="text-blue-500 font-bold leading-10">
+                <label class="text-blue-500 font-bold leading-10 pr-2 pl-1">
                     Activity
                 </label>
             </div>
             <form onSubmit={addPost} autoComplete="off">
-                <div class="h-screen flex flex-col gap-5 items-center bg-white">
+                <div class="flex flex-col gap-5 items-center bg-white">
                     <div class="w-full md:w-1/2 px-3 mb-6 md:mb-0">
                         <label class="block uppercase tracking-wide text-gray-700 text-xs font-bold mb-2" for="grid-first-name">
                             Title
