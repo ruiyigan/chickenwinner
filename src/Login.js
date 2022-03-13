@@ -42,7 +42,7 @@ function Login() {
     if (!isSignedIn) {
         return (
             <div>
-                <h1 class="mt-6 text-center text-3xl font-extrabold text-gray-900 leading-10">Raise</h1>
+                <h1 class="mt-6 text-center text-3xl font-extrabold text-purple-700 leading-10">raiSE</h1>
                 <StyledFirebaseAuth uiConfig={uiConfig} firebaseAuth={firebase.auth()} />
             </div>
         );
@@ -73,7 +73,6 @@ function Login() {
     if (type === 'Social Enterprise') {
         return (
             <>
-                <h1 class='text-center'>Welcome</h1>
                 <SocialEnterprise type={type} signOut={signOut} id={firebase.auth().currentUser.uid} />
             </>
         )

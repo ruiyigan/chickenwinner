@@ -162,13 +162,13 @@ const Post = ({post, setPosts, posts, type}) => {
 
                 <div class="flex-col">
                     <div class="pb-2">
-                        {type === 'Individual' && !post.participantIds.includes(firebase.auth().currentUser.uid) && post.slotsFilled < post.capacity && <button onClick={() => signUpActivity()}>Sign Up</button>}
+                        {type === 'Individual' && !post.participantIds.includes(firebase.auth().currentUser.uid) && post.slotsFilled < post.capacity && <button class="text-white bg-orange-400 hover:bg-orange-600 focus:ring-4 focus:ring-blue-300 font-medium rounded-lg text-sm w-full sm:w-auto px-3 py-2 text-center dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800" onClick={() => signUpActivity()}>Sign Up</button>}
                     </div>
                     <div class="pb-2">
-                        {type === 'Social Enterprise' && <button class="text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:ring-blue-300 font-medium rounded-lg text-sm w-full sm:w-auto px-3 py-2 text-center dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800" onClick={() => setIsEditing(true)}>Edit</button>}
+                        {type === 'Social Enterprise' && <button class="text-white bg-gray-400 hover:bg-gray-600 focus:ring-4 focus:ring-blue-300 font-medium rounded-lg text-sm w-full sm:w-auto px-3 py-2 text-center dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800" onClick={() => setIsEditing(true)}>Edit</button>}
                     </div>
                     <div class="pb-2">
-                        {type === 'Social Enterprise' && <button class="text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:ring-blue-300 font-medium rounded-lg text-sm w-full sm:w-auto px-3 py-2 text-center dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800" onClick={() => deletePost()}>Delete</button>}
+                        {type === 'Social Enterprise' && <button class="text-white bg-red-400 hover:bg-red-800 focus:ring-4 focus:ring-blue-300 font-medium rounded-lg text-sm w-full sm:w-auto px-3 py-2 text-center dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800" onClick={() => deletePost()}>Delete</button>}
                     </div>
                 </div>
             </div>

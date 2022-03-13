@@ -26,6 +26,7 @@ const SocialEnterprise = ({ type, signOut, id }) => {
     }
     return (
         <div>
+            <h1 class="text-center text-base text-gray-600 font-bold uppercase leading-10">Welcome</h1>
             <h1 class="text-center text-2xl text-gray-800 font-bold uppercase leading-10">{enterpriseData.name}</h1>
             <div class="pt-2 text-center">
                 <button onClick={() => toggleCreateNewPost()} class="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded-full">{createPost ? "Hide" : "Create New Post"}</button>
@@ -33,9 +34,7 @@ const SocialEnterprise = ({ type, signOut, id }) => {
             {type === 'Social Enterprise' && createPost && <CreateNewPost setCreatePost={setCreatePost} setPosts={setPosts} posts={posts} />}
             <Posts posts={posts} setPosts={setPosts} type={type}/>
             {type === 'Social Enterprise' && 
-                <button class="absolute top-0 right-0 bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded-full" onClick={() => signOut()} >
-                    Sign out
-                </button>
+                <button class="absolute top-10 right-10 bg-blue-300 hover:bg-blue-500 text-white font-bold py-2 px-4 rounded-full" onClick={() => signOut()}>Sign-out</button>
             }
         </div>
     )

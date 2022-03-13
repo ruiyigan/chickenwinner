@@ -104,11 +104,11 @@ const CreateNewPost = ({ posts, setPosts, setCreatePost }) => {
     return (
         <>
             <div class="text-center">
-                <input onChange={onChangeValue} type="radio" value="Post" name="post" /> 
+                <input class="mx-4" onChange={onChangeValue} type="radio" value="Post" name="post" /> 
                 <label class="text-blue-500 font-bold leading-10 pr-2 pl-1">
                     Post
                 </label>
-                <input onChange={onChangeValue} type="radio" value="Activity" name="post" />
+                <input class="mx-4" onChange={onChangeValue} type="radio" value="Activity" name="post" />
                 <label class="text-blue-500 font-bold leading-10 pr-2 pl-1">
                     Activity
                 </label>

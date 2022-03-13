@@ -33,7 +33,7 @@ const Individual = ({ type, signOut }) => {
 
     const Browse = () => {
         return (
-            <div class='grid place-items-center'>
+            <div class='text-center'>
                 {enterpriseIds.map(id => <EnterpriseCard key={id} type={type} signOut={signOut} id={id} />)}
             </div>
         )
@@ -76,7 +76,7 @@ const Individual = ({ type, signOut }) => {
             </div>
             {isSchedule ? <Schedule /> : <Browse />}
             
-            <button class="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded-full" onClick={() => signOut()}>Sign-out</button>
+            <button class="absolute top-10 right-10 bg-blue-300 hover:bg-blue-500 text-white font-bold py-2 px-4 rounded-full" onClick={() => signOut()}>Sign-out</button>
         </div>
     )
 }
