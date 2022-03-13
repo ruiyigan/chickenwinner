@@ -94,7 +94,7 @@ const Post = ({post, setPosts, posts, type}) => {
 
     if (isEditing) {
         return (
-            <div class="border-gray-300 border-2 rounded-xl w-full md:w-1/2 py-7 px-5">
+            <div class="border-gray-300 border-2 rounded-xl w-3/4 py-7 px-5">
                 <form onSubmit={updatePost} class="grid grid-cols-6 gap-3" >
                     <div class="col-span-6">
                         <div class='pb-2'>
@@ -152,7 +152,7 @@ const Post = ({post, setPosts, posts, type}) => {
     }
 
     return (
-        <div class="border-gray-300 border-2 rounded-xl w-full md:w-1/2 py-7 px-5">
+        <div class="border-gray-300 border-2 rounded-xl w-3/4 py-7 px-5">
             <div class="grid grid-cols-6 gap-3">
                 <div class="col-span-5">
                     <h3 class="text-gray-700 font-bold">Title: {post.title}</h3>
@@ -160,7 +160,7 @@ const Post = ({post, setPosts, posts, type}) => {
                     {post.postType == 'Activity' && activityPost()}
                 </div>
 
-                <div class="flex-col">
+                <div class="flex-col]">
                     <div class="pb-2">
                         {type === 'Individual' && !post.participantIds.includes(firebase.auth().currentUser.uid) && post.slotsFilled < post.capacity && <button class="text-white bg-orange-400 hover:bg-orange-600 focus:ring-4 focus:ring-blue-300 font-medium rounded-lg text-sm w-full sm:w-auto px-3 py-2 text-center dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800" onClick={() => signUpActivity()}>Sign Up</button>}
                     </div>

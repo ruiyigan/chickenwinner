@@ -33,7 +33,7 @@ const Individual = ({ type, signOut }) => {
 
     const Browse = () => {
         return (
-            <div class='text-center'>
+            <div>
                 {enterpriseIds.map(id => <EnterpriseCard key={id} type={type} signOut={signOut} id={id} />)}
             </div>
         )
@@ -74,7 +74,9 @@ const Individual = ({ type, signOut }) => {
                     Schedule
                 </label>
             </div>
-            {isSchedule ? <Schedule /> : <Browse />}
+            <div>
+                {isSchedule ? <Schedule /> : <Browse />}
+            </div>
             
             <button class="absolute top-10 right-10 bg-blue-300 hover:bg-blue-500 text-white font-bold py-2 px-4 rounded-full" onClick={() => signOut()}>Sign-out</button>
         </div>

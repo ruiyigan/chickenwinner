@@ -29,7 +29,7 @@ const SocialEnterprise = ({ type, signOut, id }) => {
             <h1 class="text-center text-base text-gray-600 font-bold uppercase leading-10">Welcome</h1>
             <h1 class="text-center text-2xl text-gray-800 font-bold uppercase leading-10">{enterpriseData.name}</h1>
             <div class="pt-2 text-center">
-                <button onClick={() => toggleCreateNewPost()} class="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded-full">{createPost ? "Hide" : "Create New Post"}</button>
+                {type === 'Social Enterprise' && <button onClick={() => toggleCreateNewPost()} class="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded-full">{createPost ? "Hide" : "Create New Post"}</button>}
             </div>
             {type === 'Social Enterprise' && createPost && <CreateNewPost setCreatePost={setCreatePost} setPosts={setPosts} posts={posts} />}
             <Posts posts={posts} setPosts={setPosts} type={type}/>

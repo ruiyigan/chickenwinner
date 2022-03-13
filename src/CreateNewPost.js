@@ -64,7 +64,7 @@ const CreateNewPost = ({ posts, setPosts, setCreatePost }) => {
     const Acitivty = () => {
         return (
             <>
-                <div class="w-full md:w-1/2 px-3 mb-6 md:mb-0">
+                <div class="w-1/2 px-3 mb-6 md:mb-0">
                     <label class="block uppercase tracking-wide text-gray-700 text-xs font-bold mb-2" for="grid-first-name">
                         Date and Time
                     </label>
@@ -75,7 +75,7 @@ const CreateNewPost = ({ posts, setPosts, setCreatePost }) => {
                         required
                     />
                 </div>
-                <div class="w-full md:w-1/2 px-3 mb-6 md:mb-0">
+                <div class="w-1/2 px-3 mb-6 md:mb-0">
                     <label class="block uppercase tracking-wide text-gray-700 text-xs font-bold mb-2" for="grid-first-name">
                         Duration (hours)
                     </label>
@@ -87,7 +87,7 @@ const CreateNewPost = ({ posts, setPosts, setCreatePost }) => {
                         required
                     />
                 </div>
-                <div class="w-full md:w-1/2 px-3 mb-6 md:mb-0">
+                <div class="w-1/2 px-3 mb-6 md:mb-0">
                     Capacity
                     <input class="appearance-none block w-full bg-gray-200 text-gray-700 border rounded py-3 px-4 mb-3 leading-tight focus:outline-none focus:bg-white"
                         type="number" 
@@ -115,7 +115,7 @@ const CreateNewPost = ({ posts, setPosts, setCreatePost }) => {
             </div>
             <form onSubmit={addPost} autoComplete="off">
                 <div class="flex flex-col gap-5 items-center bg-white">
-                    <div class="w-full md:w-1/2 px-3 mb-6 md:mb-0">
+                    <div class="w-1/2 px-3 mb-6 md:mb-0">
                         <label class="block uppercase tracking-wide text-gray-700 text-xs font-bold mb-2" for="grid-first-name">
                             Title
                         </label>
@@ -127,7 +127,7 @@ const CreateNewPost = ({ posts, setPosts, setCreatePost }) => {
                             required
                         />
                     </div>
-                    <div class="w-full md:w-1/2 px-3 mb-6 md:mb-0">
+                    <div class="w-1/2 px-3 mb-6 md:mb-0">
                     <label class="block uppercase tracking-wide text-gray-700 text-xs font-bold mb-2" for="grid-first-name">
                             Content
                         </label>

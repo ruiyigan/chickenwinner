@@ -20,9 +20,12 @@ const EnterpriseCard = ({ type, signOut, id }) => {
         )
     }
     return (
-        <button class="bg-orange-500 hover:bg-orange-700 text-white font-bold py-2 px-4 rounded flex flex-col my-3 w-64 text-center" onClick={() => setIsClicked(true)}>
-            {enterpriseName}
-        </button>
+        <div class='flex flex-col items-center'>
+            <button class="bg-orange-500 hover:bg-orange-700 text-white font-bold py-2 px-4 rounded flex flex-col my-3 w-64 text-center" onClick={() => setIsClicked(true)}>
+                {enterpriseName}
+            </button>
+        </div>
+
     )
 }
 
