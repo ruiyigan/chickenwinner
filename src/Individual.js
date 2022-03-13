@@ -33,9 +33,9 @@ const Individual = ({ type, signOut }) => {
 
     const Browse = () => {
         return (
-            <>
+            <div class='grid place-items-center'>
                 {enterpriseIds.map(id => <EnterpriseCard key={id} type={type} signOut={signOut} id={id} />)}
-            </>
+            </div>
         )
     }
 
@@ -62,14 +62,21 @@ const Individual = ({ type, signOut }) => {
 
     return (
         <div>
-            <h1>Individual</h1>
-            <div>
-                <input onChange={onChangeValue} type="radio" value="Browse" name="view" /> Browse
-                <input onChange={onChangeValue} type="radio" value="Schedule" name="view" /> Schedule
+            <h1 class="text-center text-base text-gray-600 font-bold uppercase leading-10">Welcome</h1>
+            <h1 class="text-center text-2xl text-gray-800 font-bold uppercase leading-10">{firebase.auth().currentUser.displayName}</h1>
+            <div class='text-center'>
+                <input class="mx-4" onChange={onChangeValue} type="radio" value="Browse" name="view" /> 
+                <label class="text-blue-500 font-bold leading-10">
+                    Browse
+                </label>
+                <input class="mx-4" onChange={onChangeValue} type="radio" value="Schedule" name="view" />
+                <label class="text-blue-500 font-bold leading-10">
+                    Schedule
+                </label>
             </div>
-            <p>Welcome {firebase.auth().currentUser.displayName}! You are now signed-in!</p>
             {isSchedule ? <Schedule /> : <Browse />}
-            <button onClick={() => signOut()}>Sign-out</button>
+            
+            <button class="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded-full" onClick={() => signOut()}>Sign-out</button>
         </div>
     )
 }
