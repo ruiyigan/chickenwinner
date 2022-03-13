@@ -13,7 +13,8 @@ const getIndividualSnapshot = (uid) => {
 const addIndividual = (uid, name, email) => {
     return setDoc(doc(db, "individuals", uid), {
         name: name,
-        email: email
+        email: email,
+        signedUpActivityIds: []
     });
 }
 

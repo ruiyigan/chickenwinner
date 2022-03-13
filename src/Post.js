@@ -1,23 +1,35 @@
-import { deleteDoc, doc, setDoc } from 'firebase/firestore'
+import { deleteDoc, doc, setDoc, updateDoc, arrayRemove, arrayUnion } from 'firebase/firestore'
 import React from 'react'
 import { useState } from 'react'
-import { db } from './services/firebase-config'
+import { db, firebase } from './services/firebase-config'
 
-const Post = ({id, title, content, setPosts, posts, type}) => {
+const Post = ({post, setPosts, posts, type}) => {
     const [isEditing, setIsEditing] = useState(false)
-    const [editTitle, setEditTitle] = useState(title)
-    const [editContent, setEditContent] = useState(content)
+    const [editTitle, setEditTitle] = useState(post.title)
+    const [editContent, setEditContent] = useState(post.content)
 
     const updatePost = async (event) => {
         event.preventDefault()
         const PostObject = {
             title: editTitle,
             content: editContent,
-            id: id
+            id: post.id
         }
-        await setDoc(doc(db, 'posts', id), PostObject, { merge: true })
+        await setDoc(doc(db, 'posts', post.id), PostObject, { merge: true })
         setIsEditing(false)
-        setPosts(posts.map(post => post.id === id ? PostObject : post))
+        setPosts(posts.map(mappedpost => mappedpost.id === post.id ? PostObject : mappedpost))
+    }
+
+    const activityPost = () => {
+        const [date, time] = post.dateTime.split('T')
+        return (
+            <>
+                <p>Duration: {post.duration}</p>
+                <p>Date: {date}</p>
+                <p>Time: {time}</p>
+                <p>Slots Available: {post.capacity - post.slotsFilled}</p>
+            </>
+        )
     }
 
     if (isEditing) {
@@ -51,14 +63,33 @@ const Post = ({id, title, content, setPosts, posts, type}) => {
     }
     
     const deletePost = async () => {
-        await deleteDoc(doc(db, 'posts', id))
-        setPosts(posts.filter(post => post.id !== id))
+        await deleteDoc(doc(db, 'posts', post.id))
+        setPosts(posts.filter(filterdpost => filterdpost.id !== post.id))
+    }
+
+    const signUpActivity = async () => {
+        const PostObject = {
+            title: editTitle,
+            content: editContent,
+            id: post.id,
+            participantIds: [...post.participantIds, firebase.auth().currentUser.uid],
+            slotsFilled: post.slotsFilled + 1,
+            capacity: post.capacity,
+            duration: post.duration,
+            dateTime: post.dateTime,
+            postType: post.postType
+        }
+        await setDoc(doc(db, 'posts', post.id), PostObject, { merge: true })
+        await updateDoc(doc(db, 'individuals', firebase.auth().currentUser.uid), {signedUpActivityIds: arrayUnion(post.id)})
+        setPosts(posts.map(mappedpost => mappedpost.id === post.id ? PostObject : mappedpost))
     }
 
     return (
         <>
-            <h3>{title}</h3>
-            <p>{content}</p>
+            <h3>Title: {post.title}</h3>
+            <p>Content: {post.content}</p>
+            {post.postType == 'Activity' && activityPost()}
+            {type === 'Individual' && !post.participantIds.includes(firebase.auth().currentUser.uid) && post.slotsFilled < post.capacity && <button onClick={() => signUpActivity()}>Sign Up</button>}
             {type === 'Social Enterprise' && <button onClick={() => setIsEditing(true)}>Edit</button>}
             {type === 'Social Enterprise' && <button onClick={() => deletePost()}>Delete</button>}
         </>
