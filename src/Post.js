@@ -23,7 +23,8 @@ const Post = ({post, setPosts, posts, type}) => {
                 dateTime: editDateTime,
                 duration: editDuration,
                 capacity: editCapacity,
-                slotsFilled: post.slotsFilled
+                slotsFilled: post.slotsFilled,
+                participantIds: post.participantIds,
             }
         }
         else {
@@ -32,6 +33,7 @@ const Post = ({post, setPosts, posts, type}) => {
                 postType: post.postType,
                 title: editTitle,
                 content: editContent,
+                participantIds: post.participantIds,
             }
         }
         await setDoc(doc(db, 'posts', post.id), PostObject, { merge: true })
