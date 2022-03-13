@@ -23,7 +23,11 @@ const SocialEnterprise = ({ type, signOut, id }) => {
             <h1 class="text-center text-2xl text-gray-800 font-bold uppercase leading-10">{enterpriseData.name}</h1>
             {type === 'Social Enterprise' && <CreateNewPost setPosts={setPosts} posts={posts} />}
             <Posts posts={posts} setPosts={setPosts} type={type}/>
-            {type === 'Social Enterprise' && <button onClick={() => signOut()}>Sign-out</button>}
+            {type === 'Social Enterprise' && 
+                <button class="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded-full" onClick={() => signOut()} >
+                    Sign out
+                </button>
+            }
         </div>
     )
 }

@@ -104,9 +104,14 @@ const CreateNewPost = ({ posts, setPosts }) => {
         <>
             <h3 class="text-center text-base text-gray-500 font-bold leading-10">New Post</h3>
             <div class="radio">
-                
-                <input onChange={onChangeValue} type="radio" value="Post" name="post" /> Post
-                <input onChange={onChangeValue} type="radio" value="Activity" name="post" /> Activity
+                <input onChange={onChangeValue} type="radio" value="Post" name="post" /> 
+                <label class="text-blue-500 font-bold leading-10">
+                    Post
+                </label>
+                <input onChange={onChangeValue} type="radio" value="Activity" name="post" />
+                <label class="text-blue-500 font-bold leading-10">
+                    Activity
+                </label>
             </div>
             <form onSubmit={addPost} autoComplete="off">
                 <div class="h-screen flex flex-col gap-5 items-center bg-white">
