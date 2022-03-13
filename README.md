@@ -1,9 +1,9 @@
 # Chicken Winner
+Visit the live prototype at https://chicken-winners.web.app/
 
+
+## Running Locally
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
-
-## Available Scripts
-
 In the project directory, you can run:
 
 ### `npm start`
