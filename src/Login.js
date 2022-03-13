@@ -42,8 +42,7 @@ function Login() {
     if (!isSignedIn) {
         return (
             <div>
-                <h1 class="mt-6 text-center text-3xl font-extrabold text-gray-900">Raise</h1>
-                <p>Please sign-in:</p>
+                <h1 class="mt-6 text-center text-3xl font-extrabold text-gray-900 leading-10">Raise</h1>
                 <StyledFirebaseAuth uiConfig={uiConfig} firebaseAuth={firebase.auth()} />
             </div>
         );

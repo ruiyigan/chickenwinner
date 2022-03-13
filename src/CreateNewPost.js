@@ -63,18 +63,22 @@ const CreateNewPost = ({ posts, setPosts }) => {
     const Acitivty = () => {
         return (
             <>
-                <div>
-                    Date and Time
-                    <input
+                <div class="w-full md:w-1/2 px-3 mb-6 md:mb-0">
+                    <label class="block uppercase tracking-wide text-gray-700 text-xs font-bold mb-2" for="grid-first-name">
+                        Date and Time
+                    </label>
+                    <input class="appearance-none block w-full bg-gray-200 text-gray-700 border rounded py-3 px-4 mb-3 leading-tight focus:outline-none focus:bg-white"
                         type="datetime-local" 
                         value={newDateTime}
                         onChange={({ target }) => setNewDateTime(target.value)}
                         required
                     />
                 </div>
-                <div>
-                    Duration (Hour)
-                    <input 
+                <div class="w-full md:w-1/2 px-3 mb-6 md:mb-0">
+                    <label class="block uppercase tracking-wide text-gray-700 text-xs font-bold mb-2" for="grid-first-name">
+                        Duration (hours)
+                    </label>
+                    <input class="appearance-none block w-full bg-gray-200 text-gray-700 border rounded py-3 px-4 mb-3 leading-tight focus:outline-none focus:bg-white"
                         type="number" 
                         min="1"
                         value={newDuration}
@@ -82,9 +86,9 @@ const CreateNewPost = ({ posts, setPosts }) => {
                         required
                     />
                 </div>
-                <div>
+                <div class="w-full md:w-1/2 px-3 mb-6 md:mb-0">
                     Capacity
-                    <input 
+                    <input class="appearance-none block w-full bg-gray-200 text-gray-700 border rounded py-3 px-4 mb-3 leading-tight focus:outline-none focus:bg-white"
                         type="number" 
                         min="1"
                         value={newCapacity}
@@ -98,36 +102,49 @@ const CreateNewPost = ({ posts, setPosts }) => {
 
     return (
         <>
-            <h3>Create New Post</h3>
-            <div>
-                <input onChange={onChangeValue} type="radio" value="Post" name="post" /> Post
-                <input onChange={onChangeValue} type="radio" value="Activity" name="post" /> Activity
+            <h3 class="text-center text-base text-gray-500 font-bold leading-10">New Post</h3>
+            <div class="radio">
+                <input onChange={onChangeValue} type="radio" value="Post" name="post" /> 
+                <label class="text-blue-500 font-bold leading-10">
+                    Post
+                </label>
+                <input onChange={onChangeValue} type="radio" value="Activity" name="post" />
+                <label class="text-blue-500 font-bold leading-10">
+                    Activity
+                </label>
             </div>
             <form onSubmit={addPost} autoComplete="off">
-                <div>
-                    Title
-                    <input
-                        name='title'
-                        type='text'
-                        value={newTitle}
-                        onChange={({ target }) => setNewTitle(target.value)}
-                        required
-                    />
+                <div class="h-screen flex flex-col gap-5 items-center bg-white">
+                    <div class="w-full md:w-1/2 px-3 mb-6 md:mb-0">
+                        <label class="block uppercase tracking-wide text-gray-700 text-xs font-bold mb-2" for="grid-first-name">
+                            Title
+                        </label>
+                        <input class="appearance-none block w-full bg-gray-200 text-gray-700 border rounded py-3 px-4 mb-3 leading-tight focus:outline-none focus:bg-white"
+                            name='title'
+                            type='text'
+                            value={newTitle}
+                            onChange={({ target }) => setNewTitle(target.value)}
+                            required
+                        />
+                    </div>
+                    <div class="w-full md:w-1/2 px-3 mb-6 md:mb-0">
+                    <label class="block uppercase tracking-wide text-gray-700 text-xs font-bold mb-2" for="grid-first-name">
+                            Content
+                        </label>
+                        <input class="appearance-none block w-full bg-gray-200 text-gray-700 border rounded py-3 px-4 mb-3 leading-tight focus:outline-none focus:bg-white"
+                            name='author'
+                            type='text'
+                            value={newContent}
+                            onChange={({ target }) => setNewContent(target.value)}
+                            required
+                        />
+                    </div>
+                    {isActivity && Acitivty()}
+                    <button type='submit' class="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded-full">
+                        Create
+                    </button>
+
                 </div>
-                <div>
-                    Content
-                    <input
-                        name='author'
-                        type='text'
-                        value={newContent}
-                        onChange={({ target }) => setNewContent(target.value)}
-                        required
-                    />
-                </div>
-                {isActivity && Acitivty()}
-                <button type='submit'>
-                    create
-                </button>
             </form>
         </>
     )
