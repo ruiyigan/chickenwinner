@@ -11,6 +11,8 @@ import Individual from './Individual.js';
 import individualService from './services/individuals.js';
 import enterpriseService from './services/enterprises.js';
 
+import './index.css'
+
 const uiConfig = {
     signInFlow: 'popup',
     signInOptions: [
@@ -40,7 +42,7 @@ function Login() {
     if (!isSignedIn) {
         return (
             <div>
-                <h1>My App</h1>
+                <h1 class="mt-6 text-center text-3xl font-extrabold text-gray-900">Raise</h1>
                 <p>Please sign-in:</p>
                 <StyledFirebaseAuth uiConfig={uiConfig} firebaseAuth={firebase.auth()} />
             </div>
