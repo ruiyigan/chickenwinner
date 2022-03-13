@@ -5,7 +5,7 @@ import { doc } from "firebase/firestore"
 import postService from './services/posts.js'
 import { v4 as uuidv4 } from 'uuid'
 
-const CreateNewPost = ({ posts, setPosts }) => {
+const CreateNewPost = ({ posts, setPosts, setCreatePost }) => {
     const [newTitle, setNewTitle] = useState('')
     const [newContent, setNewContent] = useState('')
     const [newDateTime, setNewDateTime] = useState('')
@@ -47,6 +47,7 @@ const CreateNewPost = ({ posts, setPosts }) => {
         setNewDateTime('')
         setNewDuration(0)
         setNewCapacity(0)
+        setCreatePost(false)
         setPosts([...posts, PostObject])
     }
 
