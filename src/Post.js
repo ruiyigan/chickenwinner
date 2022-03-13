@@ -94,7 +94,7 @@ const Post = ({post, setPosts, posts, type}) => {
 
     if (isEditing) {
         return (
-            <div class="border-gray-300 border-2 rounded-xl w-[30rem] py-7 px-5">
+            <div class="border-gray-300 border-2 rounded-xl w-full md:w-1/2 py-7 px-5">
                 <form onSubmit={updatePost} class="grid grid-cols-6 gap-3" >
                     <div class="col-span-6">
                         <div class='pb-2'>
@@ -152,7 +152,7 @@ const Post = ({post, setPosts, posts, type}) => {
     }
 
     return (
-        <div class="border-gray-300 border-2 rounded-xl w-[30rem] py-7 px-5">
+        <div class="border-gray-300 border-2 rounded-xl w-full md:w-1/2 py-7 px-5">
             <div class="grid grid-cols-6 gap-3">
                 <div class="col-span-5">
                     <h3 class="text-gray-700 font-bold">Title: {post.title}</h3>

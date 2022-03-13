@@ -30,7 +30,7 @@ const SocialEnterprise = ({ type, signOut, id }) => {
             <div class="pt-2 text-center">
                 <button onClick={() => toggleCreateNewPost()} class="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded-full">{createPost ? "Hide" : "Create New Post"}</button>
             </div>
-            {type === 'Social Enterprise' && createPost && <CreateNewPost setPosts={setPosts} posts={posts} />}
+            {type === 'Social Enterprise' && createPost && <CreateNewPost setCreatePost={setCreatePost} setPosts={setPosts} posts={posts} />}
             <Posts posts={posts} setPosts={setPosts} type={type}/>
             {type === 'Social Enterprise' && 
                 <button class="absolute top-0 right-0 bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded-full" onClick={() => signOut()} >
