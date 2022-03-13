@@ -23,32 +23,36 @@ const CreateNewPost = ({ posts, setPosts }) => {
         setPosts([...posts, PostObject])
     }
     return (
-        <>
-            <h3>Create New Post</h3>
+        <div class='text-center pt-4'>
+            <h3 class="text-lg font-medium leading-6 text-gray-900">Create New Post</h3>
             <form onSubmit={addPost}>
                 <div>
-                    Title
+                    <label class="block text-l font-medium text-gray-700">Title</label>
                     <input
                         name='title'
                         type='text'
                         value={newTitle}
                         onChange={({ target }) => setNewTitle(target.value)}
+                        class= "border-2 border-black rounded-md border-solid"
                     />
                 </div>
                 <div>
-                    Content
+                    <label class="block text-l font-medium text-gray-700">Content</label>
                     <input
                         name='author'
                         type='text'
                         value={newContent}
                         onChange={({ target }) => setNewContent(target.value)}
+                        class= "border-2 border-black rounded-md border-solid"
                     />
                 </div>
-                <button type='submit'>
-                    create
-                </button>
+                <div class='pt-3'>
+                    <button type='submit' class="inline-flex justify-center py-2 px-4 border border-transparent shadow-sm text-sm font-medium rounded-md text-white bg-indigo-600 hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500">
+                        create
+                    </button>
+                </div>
             </form>
-        </>
+        </div>
     )
 }
 

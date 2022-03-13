@@ -20,10 +20,11 @@ const SocialEnterprise = ({ type, signOut, id }) => {
     }, [])
     return (
         <div>
-            <h2>Social Enterprise {enterpriseData.name}</h2>
+            <h2 class="mt-6 text-center text-3xl font-extrabold text-gray-900">Social Enterprise</h2>
+            <h2 class="mt-6 text-center text-xl font-bold text-gray-800">Welcome: {enterpriseData.name}</h2>
             {type === 'Social Enterprise' && <CreateNewPost setPosts={setPosts} posts={posts} />}
             <Posts posts={posts} setPosts={setPosts} type={type}/>
-            {type === 'Social Enterprise' && <button onClick={() => signOut()}>Sign-out</button>}
+            {type === 'Social Enterprise' && <button class="absolute top-0 right-0 py-2 px-4 border border-transparent shadow-sm text-sm font-medium rounded-md text-white bg-red-600 hover:bg-red-800 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500" onClick={() => signOut()}>Sign-out</button>}
         </div>
     )
 }

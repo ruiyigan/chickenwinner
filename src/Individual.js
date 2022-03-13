@@ -16,10 +16,10 @@ const Individual = ({ type, signOut }) => {
     }, [])
     return (
         <div>
-            <h1>Individual</h1>
-            <p>Welcome {firebase.auth().currentUser.displayName}! You are now signed-in!</p>
+            <h2 class="mt-6 text-center text-3xl font-extrabold text-gray-900">Individual</h2>
+            <h2 class="mt-6 text-center text-xl font-bold text-gray-800">Welcome: {firebase.auth().currentUser.displayName}</h2>
             {enterpriseIds.map(id => <EnterpriseCard key={id} type={type} signOut={signOut} id={id} />)}
-            <button onClick={() => signOut()}>Sign-out</button>
+            <button class="absolute top-0 right-0 py-2 px-4 border border-transparent shadow-sm text-sm font-medium rounded-md text-white bg-red-600 hover:bg-red-800 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500" onClick={() => signOut()}>Sign-out</button>
         </div>
     )
 }
