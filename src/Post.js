@@ -12,7 +12,8 @@ const Post = ({id, title, content, setPosts, posts, type}) => {
         event.preventDefault()
         const PostObject = {
             title: editTitle,
-            content: editContent
+            content: editContent,
+            id: id
         }
         await setDoc(doc(db, 'posts', id), PostObject, { merge: true })
         setIsEditing(false)
